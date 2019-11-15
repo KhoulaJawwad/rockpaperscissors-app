@@ -18,7 +18,7 @@ public class Camera extends Activity
     // Constructors
     public Camera()
     {
-
+        setContentView(R.layout.activity_main);
 
     }
 
