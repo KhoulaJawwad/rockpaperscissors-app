@@ -3,9 +3,11 @@ package rps.yousuf.com.rockpaperscissors;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
-public class Camera
+public class Camera extends Activity
 {
     // Instance Variables
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -39,10 +41,11 @@ public class Camera
     public void getPic()
     {
 
+
     }
 
     /**
-     * Taking Picture Intent
+     * Issues Camera Intent
      * */
     private void dispatchTakePictureIntent()
     {
@@ -54,6 +57,19 @@ public class Camera
         }
     }
 
-    
+    /**
+     * Snaps a picture
+     * */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
+        {
+            Bitmap b = (data.getExtras()).getParcelable("data");
+
+            ImageView iv = (ImageView)findViewById(R.id.iv);
+            iv.setImageBitmap(b);
+        }
+
+    }
 
 }
