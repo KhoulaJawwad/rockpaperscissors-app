@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class Camera extends Activity
 {
     // Instance Variables
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 20001;
 
     Context context;
     Activity activity;
@@ -18,7 +18,7 @@ public class Camera extends Activity
     // Constructors
     public Camera()
     {
-        setContentView(R.layout.activity_main);
+
 
     }
 
@@ -47,7 +47,7 @@ public class Camera extends Activity
     /**
      * Issues Camera Intent
      * */
-    private void dispatchTakePictureIntent()
+    public void dispatchTakePictureIntent()
     {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
