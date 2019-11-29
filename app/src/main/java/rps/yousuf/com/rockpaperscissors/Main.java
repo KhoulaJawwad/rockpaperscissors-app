@@ -65,7 +65,7 @@ public class Main extends Activity {
     private static File mFile;
     private static Bitmap mBitmap = null;
 
-    private TextureView mTextureView;
+    private MyTextureView mTextureView;
 
     private static final int STATE_PREVIEW = 0;
     private static final int STATE_WAITING_LOCK = 1;
@@ -83,13 +83,12 @@ public class Main extends Activity {
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        mTextureView = (TextureView) findViewById(R.id.mtv);
+        setContentView(R.layout.activity_main);
+        mTextureView = (MyTextureView) findViewById(R.id.mtv);
 
         // Create file folder
         mFileFolder = Environment.getExternalStorageDirectory() + "/TutorialOnCamera/";
@@ -365,7 +364,10 @@ public class Main extends Activity {
                         maxPreviewHeight, largest);
 
                 int orientation = getResources().getConfiguration().orientation;
-
+                if (orientation == Configuration.ORIENTATION_LANDSCAPE)
+                    mTextureView.setAspectRatio(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+                else
+                    mTextureView.setAspectRatio(mPreviewSize.getHeight(), mPreviewSize.getWidth());
 
                 mCameraId = cameraId;
                 return;
